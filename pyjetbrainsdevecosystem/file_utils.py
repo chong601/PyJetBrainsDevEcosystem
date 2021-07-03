@@ -2,8 +2,6 @@ import csv
 
 # A dictionary that returns the correct delimiter to parse the questions
 # 2019+ uses CSV which is handled by unpack_csv_data instead
-from copy import deepcopy
-
 dash_type_map = {
     2017: ' — ',
     2018: ' - '
