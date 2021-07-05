@@ -6,7 +6,10 @@ A tool to load and run your own RESTful JetBrains Developer Ecosystem data using
 - MIT-licensed to allow personal and commercial use.
 
 # JetBrains Developer Survey Support
-None yet. Support coming soon!
+- [x] 2017
+- [x] 2018
+- [x] 2019
+- [x] 2020
 
 # Why this project?
 Because why not?
