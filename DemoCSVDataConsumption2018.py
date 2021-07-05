@@ -1,6 +1,6 @@
 import json
 
-from pyjetbrainsdevecosystem.file_utils import unpack_csv_data, split_data_by_dash
+from pyjetbrainsdevecosystem.data_import_utils import unpack_csv_data, split_data_by_dash
 
 questions_dict = {}
 with open('survey_data/2018/DevEcosystem 2018 questions_outside.txt',
@@ -23,8 +23,22 @@ with open('survey_data/2018/sharing_data_outside.csv',
                 field_list_with_position.update({field_name: column_number})
                 question_column_map.update({question: field_list_with_position})
 
+    entry_count = {}
+    for response in survey_reader:
+        response_data = {}
+        question_row = question_column_map.items()
+        for parent_question, column_name_dict in question_row:
+            temp_dict = {}
+            sub_entry_count = entry_count.get(parent_question, {})
+            for column_name in column_name_dict:
+                column_name: str
+                temp_dict.update({column_name: response[column_name]})
+                sub_entry_count[response[column_name]] = sub_entry_count.get(response[column_name], 0) + 1
+            response_data.update({parent_question: temp_dict})
+            entry_count.update({parent_question: sub_entry_count})
+    print(json.dumps(entry_count, indent=4))
 
-print(json.dumps(question_column_map, indent=4))
+# print(json.dumps(question_column_map, indent=4))
 # {
 #     "employemnt.status": {
 #         "employemnt.status": 0
