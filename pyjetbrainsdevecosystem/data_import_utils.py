@@ -93,4 +93,5 @@ def strip_nonprintable_chars(original_string: str):
     # return control_char_re.sub('', string)
 
     # Yes, it would be slow, but hey, is there any better solution out there?
+    original_string.replace(u'\u00a0', ' ')
     return ''.join([x for x in original_string if x in string.printable])
